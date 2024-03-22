@@ -1,1 +1,3 @@
 https://65fc91bb9fc4425c65306cd8.mockapi.io
+
+npm i @reduxjs/toolkit axios react-redux react-spinners
