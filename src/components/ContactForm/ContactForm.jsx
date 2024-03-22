@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import css from './ContactForm.module.css';
-import { UseDispatch, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/contacts/contactsOperation';
 import { selectContacts } from '../../redux/contacts/contactsSelector';
 
 export const ContactForm = () => {
@@ -14,7 +15,7 @@ export const ContactForm = () => {
     setName(e.target.value);
   };
 
-  const handleNumberchange = e => {
+  const handleNumberChange = e => {
     setNumber(e.target.value);
   };
 
@@ -33,8 +34,10 @@ export const ContactForm = () => {
       return;
     }
 
+    // dispatch(addContact({ name: name, number: number }));
     dispatch(addContact({ name, number }));
 
+    // Reset Form Fields upon submitting
     setName('');
     setNumber('');
   };
@@ -46,6 +49,7 @@ export const ContactForm = () => {
         <input
           type="text"
           name="name"
+          // add \ before - in [' \-] to make it work (LMS)
           pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
           required
